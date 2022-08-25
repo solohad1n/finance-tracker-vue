@@ -21,14 +21,20 @@
 
 <script>
 import { ref } from "@vue/reactivity";
+import { signup } from "../../composables/useSignup";
+
 export default {
   setup() {
     const email = ref("");
     const password = ref("");
     const displayName = ref("");
 
-    const handleSubmit = () => {
-      console.log(email.value, password.value, displayName.value);
+    const handleSubmit = async () => {
+      await signup(email.value, password.value, displayName.value);
+
+      if (error) {
+        console.log(error.value);
+      }
     };
 
     return {
