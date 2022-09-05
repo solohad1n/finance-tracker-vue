@@ -1,49 +1,45 @@
 <template>
-  <div @submit.prevent="handleSubmit">
-    <form class="login-form">
-      <h2>SignUp</h2>
-      <label>
-        <span>Email:</span>
-        <input v-model="email" type="email" />
-      </label>
-      <label>
-        <span>Display Name:</span>
-        <input v-model="displayName" type="text" />
-      </label>
-      <label>
-        <span>Password:</span>
-        <input v-model="password" type="password" />
-      </label>
-      <button class="btn">SignUp</button>
-    </form>
-  </div>
+  <form class="login-form" @submit.prevent="handleSubmit">
+    <h2>SignUp</h2>
+    <label>
+      <span>Email:</span>
+      <input v-model="email" type="email" />
+    </label>
+    <label>
+      <span>Display Name:</span>
+      <input v-model="displayName" type="text" />
+    </label>
+    <label>
+      <span>Password:</span>
+      <input v-model="password" type="password" />
+    </label>
+    <button class="btn">SignUp</button>
+  </form>
 </template>
 
-<script>
+<script setup>
 import { ref } from "@vue/reactivity";
+import { useRouter } from "vue-router";
 import { signup } from "../../composables/useSignup";
 
-export default {
-  setup() {
-    const email = ref("");
-    const password = ref("");
-    const displayName = ref("");
+const router = useRouter();
 
-    const handleSubmit = async () => {
-      await signup(email.value, password.value, displayName.value);
+const email = ref("");
+const password = ref("");
+const displayName = ref("");
 
-      if (error) {
-        console.log(error.value);
-      }
-    };
+const handleSubmit = async () => {
+  const { error } = await signup(
+    email.value,
+    password.value,
+    displayName.value
+  );
 
-    return {
-      email,
-      password,
-      displayName,
-      handleSubmit,
-    };
-  },
+  if (!error.value) {
+    router.push("/");
+  } else {
+    console.log(error.value);
+  }
 };
 </script>
 

@@ -1,15 +1,40 @@
 <template>
   <nav class="navbar">
-    <ul>
+    <ul v-if="!user">
       <li class="title">Мои Финансы</li>
       <li><router-link to="/login">Login</router-link></li>
       <li><router-link to="/signup">Signup</router-link></li>
     </ul>
+    <ul v-else>
+      <li class="title">Мои Финансы</li>
+      <li>hello, {{ user.displayName }}</li>
+      <li>
+        <button className="btn" @click="handleClickLogout">Logout</button>
+      </li>
+    </ul>
   </nav>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { useRouter } from "vue-router";
+import useLogout from "../../composables/useLogout";
+import { user } from "../../composables/useUser";
+
+console.log(user.value);
+
+const { error, logout } = useLogout();
+const router = useRouter();
+
+const handleClickLogout = async () => {
+  await logout();
+
+  if (!error.value) {
+    router.push("/login");
+    console.log("я вышел");
+  } else {
+    console.log(error.value);
+  }
+};
 </script>
 
 <style scoped>

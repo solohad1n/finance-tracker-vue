@@ -1,17 +1,20 @@
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { ref } from 'vue'
-import { auth } from '@/firebase/config'
+import { auth } from '../firebase/config'
+
 const error = ref(null)
 
 const login = async (email, password) => {
-  error.value = null
+
 
   try {
-    const response = await auth.signInWithEmailAndPassword(email, password)
+    const response = await signInWithEmailAndPassword(auth, email, password)
+
     error.value = null
 
     return response
+
   } catch (err) {
-    console.log(err.message)
     error.value = err.message
   }
 }

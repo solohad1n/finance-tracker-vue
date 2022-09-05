@@ -1,5 +1,5 @@
 <template>
-  <div>Home</div>
+  <div>Поздравляю ты в Home</div>
   <h1>123</h1>
 </template>
 

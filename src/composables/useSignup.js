@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { ref } from 'vue'
 import { auth } from '../firebase/config'
 
-export const signup = async (email, password, name) => {
+export const signup = async (email, password, displayName) => {
 
   const error = ref(null)
 
@@ -12,9 +12,8 @@ export const signup = async (email, password, name) => {
       email,
       password
     )
-    console.log(response)
     await updateProfile(response.user, {
-      displayName: name
+      displayName: displayName
     })
 
   }
