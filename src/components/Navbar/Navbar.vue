@@ -4,6 +4,7 @@
       <li class="title">Мои Финансы</li>
       <li><router-link to="/login">Login</router-link></li>
       <li><router-link to="/signup">Signup</router-link></li>
+      <li><router-link to="/home">home</router-link></li>
     </ul>
     <ul v-else>
       <li class="title">Мои Финансы</li>
@@ -11,6 +12,7 @@
       <li>
         <button className="btn" @click="handleClickLogout">Logout</button>
       </li>
+      <li><router-link to="/home">home</router-link></li>
     </ul>
   </nav>
 </template>

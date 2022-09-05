@@ -31,7 +31,6 @@ const handleSubmit = async () => {
 
   if (!error.value) {
     router.push("/home");
-    showForm.value = false;
   } else {
     console.log(error.value);
   }

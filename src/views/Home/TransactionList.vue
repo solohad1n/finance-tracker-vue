@@ -1,16 +1,23 @@
 <template>
   <div>
     <ul class="transactions">
-      <li>
-        <p class="name">Купить борсоки</p>
-        <p class="amount">100$</p>
+      <li v-for="post in posts" :key="post.id">
+        <p class="name">{{ post.title }}</p>
+        <p class="amount">{{ post.amount }}$</p>
       </li>
     </ul>
   </div>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { onMounted } from "@vue/runtime-core";
+import useCollection from "../../composables/useCollection";
+
+const { posts, error, fetchPosts } = useCollection();
+
+onMounted(() => {
+  fetchPosts();
+});
 </script>
 
 <style>
