@@ -36,7 +36,7 @@ const handleSubmit = async () => {
   );
 
   if (!error.value) {
-    router.push("/");
+    router.push("/home");
   } else {
     console.log(error.value);
   }

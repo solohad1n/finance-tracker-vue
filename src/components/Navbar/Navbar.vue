@@ -20,8 +20,6 @@ import { useRouter } from "vue-router";
 import useLogout from "../../composables/useLogout";
 import { user } from "../../composables/useUser";
 
-console.log(user.value);
-
 const { error, logout } = useLogout();
 const router = useRouter();
 
@@ -29,8 +27,7 @@ const handleClickLogout = async () => {
   await logout();
 
   if (!error.value) {
-    router.push("/login");
-    console.log("я вышел");
+    router.push("/");
   } else {
     console.log(error.value);
   }

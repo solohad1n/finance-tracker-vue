@@ -1,9 +1,21 @@
 <template>
-  <div>Поздравляю ты в Home</div>
-  <h1>123</h1>
+  <div class="container">
+    <div class="content"><TransactionList /></div>
+    <div class="sidebar"><TransactionForm /></div>
+  </div>
 </template>
 
-<script>
+<script setup>
+import { watchEffect } from "@vue/runtime-core";
+import { user } from "../../composables/useUser";
+import TransactionForm from "./TransactionForm.vue";
+import TransactionList from "./TransactionList.vue";
+
+watchEffect(() => {
+  if (!user.value) {
+    router.push("/");
+  }
+}, user);
 </script>
 
 <style>
