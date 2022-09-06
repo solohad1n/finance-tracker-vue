@@ -21,6 +21,9 @@ import { ref } from "vue";
 import { firestore } from "../../firebase/config";
 import { collection, addDoc } from "firebase/firestore";
 import { user } from "../../composables/useUser";
+import { useStore } from "vuex";
+
+const store = useStore();
 
 const title = ref("");
 const amount = ref("");
@@ -37,6 +40,7 @@ const handleSubmit = async () => {
     await addDoc(collection(firestore, "transactions"), newPost);
     title.value = "";
     amount.value = "";
+    store.dispatch("fetchPosts");
   } catch (err) {
     error.value = err.message;
   }
