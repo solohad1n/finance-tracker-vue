@@ -1,12 +1,12 @@
 <template>
   <nav class="navbar">
     <ul v-if="!user">
-      <li class="title">Мои Финансы</li>
+      <li class="title"><router-link to="/">Мои Финансы</router-link></li>
       <li><router-link to="/login">Login</router-link></li>
       <li><router-link to="/signup">Signup</router-link></li>
     </ul>
     <ul v-else>
-      <li class="title">Мои Финансы</li>
+      <li class="title"><router-link to="/">Мои Финансы</router-link></li>
       <li>hello, {{ user.displayName }}</li>
       <li>
         <button className="btn" @click="handleClickLogout">Logout</button>

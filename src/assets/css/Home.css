@@ -76,6 +76,11 @@
   border-left: 4px solid #1f9751;
 }
 
+.transactions input {
+  margin: 4px auto;
+  box-shadow: 3px 3px 5px rgba(50, 50, 50, 0.1);
+}
+
 .transactions .name {
   color: #777;
   font-size: 1.4em;
@@ -90,15 +95,12 @@
 }
 
 .transactions button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: #ddd;
-  color: #777;
+  display: flex;
+  background: #1f9751;
+  color: white;
   border: none;
-  padding: 12px 8px;
+  padding: 8px;
   text-align: center;
   line-height: 0;
-  font-size: 0.9em;
   cursor: pointer;
 }
